@@ -1,3 +1,6 @@
+import sys
+
+
 def show_path(n, m):
     if n < 1:
         return []
@@ -12,13 +15,17 @@ def show_path(n, m):
             path.append(circular_array[current_index])
 
 
-try:
-    n = int(input("Введите n: "))
-    m = int(input("Введите m: "))
-    if n <= 0 or m <= 0:
-        print("Введите целые положительные числа больше 0")
-    else:
-        path = show_path(n, m)
-        print(''.join(map(str, path)))
-except ValueError:
-    print("Введите целые числа")
+if len(sys.argv) != 3:
+    print("Введите строку, где n и m - положительные целые числа больше 0: "
+          "python task1.py <n> <m>")
+else:
+    try:
+        n = int(sys.argv[1])
+        m = int(sys.argv[2])
+        if n <= 0 or m <= 0:
+            print("Введите целые положительные числа больше 0")
+        else:
+            path = show_path(n, m)
+            print(''.join(map(str, path)))
+    except ValueError:
+        print("Ошибка в аргументах")
